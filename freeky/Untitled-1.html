@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التشفير بثلاث طرق (Shift - Monoalphabetic - Vigenere - Playfair)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>التشفير بطرق مختلفة</h1>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button" onclick="showTab('shift')">Shift</button>
+            <button class="tab-button" onclick="showTab('monoalphabetic')">Monoalphabetic</button>
+            <button class="tab-button" onclick="showTab('vigenere')">Vigenere</button>
+            <button class="tab-button" onclick="showTab('playfair')">Playfair</button>
+            <button class="tab-button" onclick="showTab('rail-fence')">Rail Fence</button>
+            <button class="tab-button" onclick="showTab('row-transposition')">Row Transposition</button>
+            <button class="tab-button" onclick="showTab('double-transposition')">Double Transposition</button>
+            <button class="tab-button" onclick="showTab('adfgvx')">ADFGVX</button> <!-- New Tab -->
+        </div>
+
+        <!-- ADFGVX Cipher Tab -->
+        <div class="tab-content" id="adfgvx">
+            <h2>ADFGVX Cipher</h2>
+
+            <textarea placeholder="أدخل النص هنا..." id="adfgvx-input"></textarea>
+            <input type="text" placeholder="أدخل المفتاح (كلمة)" id="adfgvx-key" />
+
+            <div class="button-container">
+                <button onclick="encryptADFGVXHandler()">تشفير</button>
+                <button onclick="decryptADFGVXHandler()">فك التشفير</button>
+            </div>
+
+            <!-- Step 1: Polybius Square Mapping -->
+            <h3>Step 1: Polybius Square Mapping</h3>
+            <div id="polybius-visual" class="visual-container"></div>
+
+            <!-- Step 2: Coordinates for Input Text -->
+            <h3>Step 2: Coordinates for Input Text</h3>
+            <div id="coordinates-output" class="coordinates-container"></div>
+
+            <!-- Step 3: Columnar Reordering by Key -->
+            <h3>Step 3: Columnar Reordering by Key</h3>
+            <div id="transposition-visual" class="visual-container"></div>
+
+            <h3>Final Encrypted/Decrypted Text</h3>
+            <textarea placeholder="النتيجة ستظهر هنا..." id="adfgvx-result"></textarea>
+        </div>
+
+
+
+        <!-- Shift Cipher Tab -->
+        <div class="tab-content" id="shift">
+            <textarea placeholder="أدخل النص هنا..." id="shift-input"></textarea>
+            <input type="number" placeholder="أدخل المفتاح (رقم)" id="shift-key" />
+            <div class="button-container">
+                <button onclick="encryptShift()">تشفير</button>
+                <button onclick="decryptShift()">فك التشفير</button>
+                <button id="shift-transform-button">عرض التحولات</button> <!-- New Button -->
+            </div>
+            <textarea placeholder="النتيجة ستظهر هنا..." id="shift-result"></textarea>
+
+            <!-- Container for shift transformations -->
+            <div id="shift-transformations-container" class="mapping-container"></div>
+        </div>
+
+
+        <!-- Monoalphabetic Cipher Tab -->
+        <!-- Monoalphabetic Cipher Tab -->
+        <div class="tab-content" id="monoalphabetic">
+            <textarea placeholder="أدخل النص هنا..." id="mono-input"></textarea>
+            <div class="input-container">
+                <input type="text" placeholder="أدخل المفتاح هنا أو" id="mono-key" />
+                <button onclick="generateAndShowMonoKey()">توليد مفتاح عشوائي</button>
+            </div>
+            <div id="mono-mapping-container" class="mapping-container"></div> <!-- Visual Mapping -->
+            <div class="button-container">
+                <button onclick="encryptMono()">تشفير</button>
+                <button onclick="decryptMono()">فك التشفير</button>
+            </div>
+            <textarea placeholder="النتيجة ستظهر هنا..." id="mono-result"></textarea>
+        </div>
+
+
+
+        <!-- Vigenère Cipher Tab -->
+        <div class="tab-content" id="vigenere">
+            <textarea placeholder="أدخل النص هنا..." id="vigenere-input"></textarea>
+            <input type="text" placeholder="أدخل المفتاح (كلمة)" id="vigenere-key" />
+            <div class="button-container">
+                <button onclick="encryptVigenere()">تشفير</button>
+                <button onclick="decryptVigenere()">فك التشفير</button>
+            </div>
+            <textarea placeholder="النتيجة ستظهر هنا..." id="vigenere-result"></textarea>
+
+            <!-- Visualization Container -->
+            <div id="diagram-container" class="diagram-container"></div>
+        </div>
+
+        <!-- Playfair Cipher Tab -->
+        <div class="tab-content" id="playfair">
+            <textarea placeholder="أدخل النص هنا..." id="playfair-input"></textarea>
+            <input type="text" placeholder="أدخل المفتاح (5-25 حرف)" id="playfair-key" />
+            <div class="button-container">
+                <button onclick="encryptPlayfair()">تشفير</button>
+                <button onclick="decryptPlayfair()">فك التشفير</button>
+            </div>
+            <textarea placeholder="النتيجة ستظهر هنا..." id="playfair-result"></textarea>
+
+            <!-- Error Message Container -->
+            <div id="playfair-error" class="error-message" style="display: none;"></div>
+
+            <div id="playfair-steps"></div> <!-- For displaying matrix visualization -->
+        </div>
+
+        <!-- Rail Fence Cipher Tab -->
+        <div class="tab-content" id="rail-fence">
+            <textarea placeholder="أدخل النص هنا..." id="rail-input"></textarea>
+            <input type="number" placeholder="أدخل عدد القضبان (Rails)" id="rail-key" min="2" />
+            <div class="button-container">
+                <button onclick="visualizeRailFenceEncrypt()">تشفير</button>
+                <button onclick="visualizeRailFenceDecrypt()">فك التشفير</button> <!-- Decrypt Button -->
+            </div>
+            <div id="visual-container" class="visual-container"></div>
+            <textarea placeholder="النتيجة ستظهر هنا..." id="rail-result"></textarea>
+        </div>
+        <!-- Row Transposition Cipher Tab -->
+        <div class="tab-content" id="row-transposition">
+            <textarea placeholder="أدخل النص هنا..." id="row-input"></textarea>
+            <input type="number" placeholder="أدخل عدد الأعمدة (Columns)" id="row-key" min="2" />
+            <div class="button-container">
+                <button onclick="visualizeRowTranspositionEncrypt()">تشفير</button>
+                <button onclick="visualizeRowTranspositionDecrypt()">فك التشفير</button> <!-- Decrypt button -->
+            </div>
+            <div id="row-visual-container" class="visual-container"></div>
+            <textarea placeholder="النتيجة ستظهر هنا..." id="row-result"></textarea>
+        </div>
+
+        <!-- Double Transposition Cipher Tab -->
+        <div class="tab-content" id="double-transposition">
+            <textarea placeholder="أدخل النص هنا..." id="double-input"></textarea>
+            <input type="number" id="double-rows" placeholder="أدخل عدد الصفوف" min="2" />
+            <input type="number" id="double-columns" placeholder="أدخل عدد الأعمدة" min="2" />
+            <div class="button-container">
+                <button onclick="visualizeDoubleTranspositionEncrypt()">تشفير</button>
+                <button onclick="visualizeDoubleTranspositionDecrypt()">فك التشفير</button>
+            </div>
+            <div id="double-visual-container" class="visual-container"></div>
+            <textarea placeholder="النتيجة ستظهر هنا..." id="double-result"></textarea>
+        </div>
+
+    </div>
+
+      <!-- Include Utility JS Files -->
+      <script src="utils.js" defer></script>
+      
+  
+      <!-- Include Cipher JS Files -->
+      <script src="shiftCipher.js" defer></script>
+      <script src="monoCipher.js" defer></script>
+      <script src="vigenereCipher.js" defer></script>
+      <script src="playfairCipher.js" defer></script>
+      <script src="railFenceCipher.js" defer></script>
+      <script src="rowTransposition.js" defer></script>
+      <script src="doubleTransposition.js" defer></script>
+      <script src="adfgvxCipher.js" defer></script>
+</body>
+
+</html>

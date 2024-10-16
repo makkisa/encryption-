@@ -1,0 +1,368 @@
+/* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.tab-button {
+    background-color: #f28b82;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-container {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* General Styling */
+/* Playfair Error Message Styling */
+#error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+}
+
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+}
+
+button.toggle-theme {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .button-container {
+        flex-direction: column;
+    }
+
+    textarea, input {
+        width: 100%;
+    }
+}
+/* Playfair Matrix Styles */
+.playfair-matrix {
+    margin: 10px 0;
+    border-collapse: collapse;
+}
+
+.playfair-matrix td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.playfair-matrix .highlight {
+    background-color: #f28b82; /* Red highlight */
+    color: white;
+}
+
+/* Styling for the Monoalphabetic Key Mapping Table */
+.mono-mapping {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.mono-mapping th, .mono-mapping td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.mono-mapping th {
+    background-color: #f28b82;
+    color: white;
+    font-weight: bold;
+}
+
+.mapping-container {
+    margin-top: 10px;
+    min-height: 80px; /* Ensure enough height for two rows */
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between rows */
+}
+
+/* Row styling for the alphabet and key rows */
+.vector-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px; /* Add spacing between cells */
+}
+
+/* Cell styling to ensure proper visibility */
+.cell {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+/* Container for shift transformations */
+.mapping-container {
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto; /* Scroll if content overflows */
+}
+
+/* Styling each row in the shift transformations */
+
+.vector-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px; /* Add spacing between rows */
+}
+
+
+/* Styling the label and text for each shift */
+.shift-label {
+    font-weight: bold;
+    color: #333;
+    min-width: 80px;
+}
+
+.shifted-text {
+    background-color: #f4f4f4;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex-grow: 1;
+}
+.diagram-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.array {
+    display: flex;
+    gap: 10px;
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+    
+
+
+
+.labeled-array {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.array-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-box {
+    background-color: #ff5722;
+    color: white;
+}
+.key-box {
+    background-color: #2196f3;
+    color: white;
+}
+.result-box {
+    background-color: #4caf50;
+    color: white;
+}
+.arrow {
+    width: 50px;
+    height: 2px;
+    background-color: black;
+    margin: auto;
+}.visual-container {
+    margin-top: 20px;
+    overflow-x: auto;
+    display: block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+td {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.empty-cell {
+    background-color: #f4f4f4;
+}
+
+.filled-cell {
+    background-color: #d1e7dd;
+    color: black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.empty-cell {
+    background-color: #f4f4f4;
+}
+
+.filled-cell {
+    background-color: #d1e7dd;
+    color: black;
+}
+/* Styles for ADFGVX Tab */
+.visual-container {
+    margin-top: 10px;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+th {
+    background-color: #e0e0e0;
+}
+
+.coordinates-container {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    word-wrap: break-word;
+}
